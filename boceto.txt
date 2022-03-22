@@ -1,0 +1,52 @@
+class Cliente {
+    string nombreCliente;
+    int ID;
+ 
+    Cliente();
+    Cliente(string, int, Pelicula, Sala, string);
+}
+
+class Clientes {
+    Cliente cleintes[2800];
+    size_t = 0;
+
+    void registrarCliente(); //Añade el cliente al arreglo de objetos cliente;
+    void buscarCliente(); //Busca un cliente por ID o por Nombre;
+}
+
+class Pelicula {
+    string nombre;
+    string director;
+    int duracion;
+    int horario;
+
+    Pelicula();
+    Pelicula(string, string, int, int);
+}
+
+class SalaMediana {
+    Pelicula peliculas[5];
+    int asientos[7][8];
+
+    SalaMediana;
+    void mostrarAsientos();
+    void añadirPeliculas(Pelicula x);
+    void eliminarPeliculas();
+}
+
+class SalaGrande {
+    Pelicula peliculas[5];
+    int asientos[10][14];
+    
+    SalaGrande();
+    void mostrarAsientos();
+    void añadirPeliculas(Pelicula x);
+    void eliminarPeliculas();
+}
+
+class Cine {
+    Sala salas[7];
+    size_t counter;
+
+    void mostrarFunciones();
+}
