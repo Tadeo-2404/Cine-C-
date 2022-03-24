@@ -1,8 +1,9 @@
 #include <iostream>
 using namespace std;
-#include "cine.hpp"
 #include "cliente.hpp"
+#include "cine.hpp"
 #include "sala.hpp"
+#include "pelicula.hpp"
 #include <iomanip>
 
 // CONSTRUCTOR CINE
@@ -145,6 +146,8 @@ void Cine::venderTicket()
     srand(time(NULL));
     Cliente cliente;
     Pelicula peliculaEscogida;
+    SalaMediana salamediana;
+    SalaGrande salagrande;
     string nombreCliente;
     string asiento;
     int ID;
@@ -182,50 +185,23 @@ void Cine::venderTicket()
       fflush(stdin);
       cin >> getPeliID;
 
-      if (getSalaID - 1 == 0)
-      {
-        cout << "Escogiste sala[Grande 1]" << endl;
-        Sala &sala = arregloSala[0];
-        SalaGrande &salagrande = arregloSalaGrande[0];
-        cout << "Sala Grande:" << endl;
+      Sala &sala = arregloSala[getSalaID -1];
+      if(sala.getTipoSala() == "SalaGrande") {
+        
+        cout << "Estas en: SalaGrande" <<endl;
+        salagrande.mostrarAsientos();
+        salagrande.escogerAsiento(getPeliID -1);
         peliculaEscogida = sala.mostrarPeliEscogida(getPeliID - 1);
-        salagrande.mostrarAsientos();
-        asiento = salagrande.escogerAsiento(peliculaEscogida);
-        // cliente.crearTicket(nombreCliente, ID, getSalaID, peliculaEscogida.getNombre(), peliculaEscogida.getHorario(), asiento);
-        // cliente.mostrarTicket();
-        clientesArray[counterClientes] = cliente;
-        counterClientes++;
-      }
-      else if (getSalaID - 1 == 1)
-      {
-        cout << "Escogiste sala[Grande 2]" << endl;
-        SalaGrande &salagrande = arregloSalaGrande[0];
-        cout << "Sala Grande:" << endl;
-        salagrande.mostrarAsientos();
-        asiento = salagrande.escogerAsiento();
-        cout << "-----------------------------" << endl;
-        Sala &sala = arregloSala[0];
-        Pelicula peliculaEscogida = sala.mostrarPeliEscogida(getPeliID - 1);
-        // cliente.crearTicket(nombreCliente, ID, getSalaID, peliculaEscogida.getNombre(), peliculaEscogida.getHorario(), asiento);
-        // cliente.mostrarTicket();
-        clientesArray[counterClientes] = cliente;
-        counterClientes++;
-      }
-      else
-      {
-        cout << "Escogiste sala[Mediana]" << "N.-" << getSalaID -2 << endl;
-        SalaMediana &salamediana = arregloSalaMedian[getSalaID - 3];
-        cout << "Sala Mediana:" << endl;
+        cout << "Asiento: " << asiento <<endl;
+
+      } else if(sala.getTipoSala() == "SalaMediana") {
+
+        cout << "Estas en: SalaMediana" <<endl;
         salamediana.mostrarAsientos();
-        asiento = salamediana.escogerAsiento();
-        cout << "-----------------------------" << endl;
-        Sala &sala = arregloSala[getSalaID -1];
-        Pelicula peliculaEscogida = sala.mostrarPeliEscogida(getPeliID - 1);
-        // cliente.crearTicket(nombreCliente, ID, getSalaID, peliculaEscogida.getNombre(), peliculaEscogida.getHorario(), asiento);
-        // cliente.mostrarTicket();
-        clientesArray[counterClientes] = cliente;
-        counterClientes++;
-      }
+        asiento = salamediana.escogerAsiento(getPeliID -1);
+        peliculaEscogida = sala.mostrarPeliEscogida(getPeliID - 1);
+        cout << "Asiento: " << asiento <<endl;
+      } 
     }
     else
     {

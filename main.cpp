@@ -9,18 +9,12 @@ int main() {
     int opc;
     int sel;
     int ch;
+    int pos = 1;
     Cliente cliente;
     Cine cine;
     SalaGrande salaG1, salaG2;
     SalaMediana salaM1, salaM2, salaM3, salaM4, salaM5;
     string nombreClienteBuscado;
-    cine.registrarSalaGrande(salaG1);
-    cine.registrarSalaGrande(salaG2);
-    cine.registrarSalaMediana(salaM1);
-    cine.registrarSalaMediana(salaM2);
-    cine.registrarSalaMediana(salaM3);
-    cine.registrarSalaMediana(salaM4);
-    cine.registrarSalaMediana(salaM5);
     cine.registrarSala(salaG1);
     cine.registrarSala(salaG2);
     cine.registrarSala(salaM1);
@@ -109,6 +103,8 @@ do {
 
     case 5:
         cout << "Eliminar Pelicula de Sala" <<endl;
+        salaG1.mostrarAsientos();
+        salaG1.escogerAsiento(pos);
         break;
 
     default:

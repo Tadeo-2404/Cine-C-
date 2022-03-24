@@ -6,7 +6,7 @@ class Sala {
    Pelicula arrayPeliculaSala[5]; //Arreglo de Sala donde se almacena la pelicula
    size_t counterPeliculasSala; //Contador que lleva el registro de la cantidad de peliculas
    size_t counterHorarioString; //Contador que lleva el registro de la cantidad de horarios 
-
+   string tipoSala;
    string arrayHorarioString[5]; //Guarda los horarios peliculas de la sala
    float horario = 9.00;
 
@@ -16,7 +16,8 @@ public:
     void añadirPeliculas(Pelicula &x); //Añade una pelicula a la sala
     void mostrarPelicula(); //Muestra que pelicula hay en la sala
     void eliminarPeliculas(); //Elimina la pelicula de la sala
-    bool hayPelicula(); //Hay pelicula: True, else False
+    void setTipoSala(string);
+    string getTipoSala();
 };
 
 class SalaMediana : public Sala {
@@ -32,7 +33,7 @@ class SalaMediana : public Sala {
 public:
     SalaMediana();
     void mostrarAsientos();
-    string escogerAsiento(Pelicula &pelicula);
+    string escogerAsiento(int position);
 };
 
 class SalaGrande : public Sala {
@@ -52,7 +53,7 @@ class SalaGrande : public Sala {
 public:
     SalaGrande();
     void mostrarAsientos();
-    string escogerAsiento(Pelicula &pelicula);
+    string escogerAsiento(int position);
 };
 
 #endif
