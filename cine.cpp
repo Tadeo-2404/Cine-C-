@@ -146,8 +146,6 @@ void Cine::venderTicket()
     srand(time(NULL));
     Cliente cliente;
     Pelicula peliculaEscogida;
-    SalaMediana salamediana;
-    SalaGrande salagrande;
     string nombreCliente;
     string asiento;
     int ID;
@@ -185,23 +183,106 @@ void Cine::venderTicket()
       fflush(stdin);
       cin >> getPeliID;
 
-      Sala &sala = arregloSala[getSalaID -1];
-      if(sala.getTipoSala() == "SalaGrande") {
-        
-        cout << "Estas en: SalaGrande" <<endl;
-        salagrande.mostrarAsientos();
-        salagrande.escogerAsiento(getPeliID -1);
-        peliculaEscogida = sala.mostrarPeliEscogida(getPeliID - 1);
-        cout << "Asiento: " << asiento <<endl;
+      Sala &sala = arregloSala[getSalaID - 1];
 
-      } else if(sala.getTipoSala() == "SalaMediana") {
-
-        cout << "Estas en: SalaMediana" <<endl;
-        salamediana.mostrarAsientos();
-        asiento = salamediana.escogerAsiento(getPeliID -1);
+      switch (getSalaID -1)
+      {
+      case 0:
+      {
+        cout << "Sala N.- 1 " << sala.getTipoSala() <<endl;
+        SalaGrande salaG1 = arregloSala[0];
+        asiento = salaG1.escogerAsiento(getPeliID - 1);
+        cout << "Asientos Sala 1: Actualizados!!" <<endl;
+        salaG1.mostrarAsientos(getPeliID - 1);
         peliculaEscogida = sala.mostrarPeliEscogida(getPeliID - 1);
-        cout << "Asiento: " << asiento <<endl;
-      } 
+        cout << "Nombre: " << peliculaEscogida.getNombre() <<endl;
+        cout << "Horario: " << peliculaEscogida.getHorario() <<endl;
+        cout << "Asiento: " << asiento << endl;
+        break;
+      }
+      case 1:
+      {
+        cout << "Sala N.- 2 " << sala.getTipoSala() <<endl;
+        SalaGrande salaG2;
+        asiento = salaG2.escogerAsiento(getPeliID - 1);
+        cout << "Asientos Sala 2: Actualizados!!" <<endl;
+        salaG2.mostrarAsientos(getPeliID - 1);
+        peliculaEscogida = sala.mostrarPeliEscogida(getPeliID - 1);
+        cout << "Nombre: " << peliculaEscogida.getNombre() <<endl;
+        cout << "Horario: " << peliculaEscogida.getHorario() <<endl;
+        cout << "Asiento: " << asiento << endl;
+        break;        
+      }
+      case 2:
+      {
+        cout << "Sala N.- 3 " << sala.getTipoSala() <<endl;
+        SalaMediana salaM1;
+        asiento = salaM1.escogerAsiento(getPeliID - 1);
+        cout << "Asientos Sala 3: Actualizados!!" <<endl;
+        salaM1.mostrarAsientos(getPeliID - 1);
+        peliculaEscogida = sala.mostrarPeliEscogida(getPeliID - 1);
+        cout << "Nombre: " << peliculaEscogida.getNombre() <<endl;
+        cout << "Horario: " << peliculaEscogida.getHorario() <<endl;
+        cout << "Asiento: " << asiento << endl;
+        break;        
+      }
+      case 3:
+      {
+        cout << "Sala N.- 4 " << sala.getTipoSala() <<endl;
+        SalaMediana salaM2;
+        asiento = salaM2.escogerAsiento(getPeliID - 1);
+        cout << "Asientos Sala 4: Actualizados!!" <<endl;
+        salaM2.mostrarAsientos(getPeliID - 1);
+        peliculaEscogida = sala.mostrarPeliEscogida(getPeliID - 1);
+        cout << "Nombre: " << peliculaEscogida.getNombre() <<endl;
+        cout << "Horario: " << peliculaEscogida.getHorario() <<endl;
+        cout << "Asiento: " << asiento << endl;
+        break;        
+      }
+
+      case 4:
+      {
+        cout << "Sala N.- 5 " << sala.getTipoSala() <<endl;
+        SalaMediana salaM3;
+        asiento = salaM3.escogerAsiento(getPeliID - 1);
+        cout << "Asientos Sala 5: Actualizados!!" <<endl;
+        salaM3.mostrarAsientos(getPeliID - 1);
+        peliculaEscogida = sala.mostrarPeliEscogida(getPeliID - 1);
+        cout << "Nombre: " << peliculaEscogida.getNombre() <<endl;
+        cout << "Horario: " << peliculaEscogida.getHorario() <<endl;
+        cout << "Asiento: " << asiento << endl;
+        break;        
+      }
+      case 5:
+      {
+        cout << "Sala N.- 6 " << sala.getTipoSala() <<endl;
+        SalaMediana salaM4;
+        asiento = salaM4.escogerAsiento(getPeliID - 1);
+        cout << "Asientos Sala 6: Actualizados!!" <<endl;
+        salaM4.mostrarAsientos(getPeliID - 1);
+        peliculaEscogida = sala.mostrarPeliEscogida(getPeliID - 1);
+        cout << "Nombre: " << peliculaEscogida.getNombre() <<endl;
+        cout << "Horario: " << peliculaEscogida.getHorario() <<endl;
+        cout << "Asiento: " << asiento << endl;
+        break;        
+      }
+      case 6:
+      {
+        cout << "Sala N.- 7 " << sala.getTipoSala() <<endl;
+        SalaMediana salaM5;
+        asiento = salaM5.escogerAsiento(getPeliID - 1);
+        cout << "Asientos Sala 7: Actualizados!!" <<endl;
+        salaM5.mostrarAsientos(getPeliID - 1);
+        peliculaEscogida = sala.mostrarPeliEscogida(getPeliID - 1);
+        cout << "Nombre: " << peliculaEscogida.getNombre() <<endl;
+        cout << "Horario: " << peliculaEscogida.getHorario() <<endl;
+        cout << "Asiento: " << asiento << endl;
+        break;        
+      }
+
+      default: cout << "ERORR: Opcion no valida" <<endl;
+        break;
+      }
     }
     else
     {

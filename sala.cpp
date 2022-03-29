@@ -36,208 +36,95 @@ SalaGrande::SalaGrande()
 // METODOS
 
 // Mostramos asietnos sala grande
-void SalaGrande::mostrarAsientos()
+void SalaGrande::mostrarAsientos(int position)
 {
-  for (int i = 0; i < 10; i++)
-  {
-    for (int j = 0; j < 14; j++)
+    for (int k = position; k < position + 1; k++)
     {
-      cout << " " << asientos[i][j] << " ";
+      for (int i = 0; i < 10; i++)
+      {
+        for (int j = 0; j < 14; j++)
+        {
+          cout << " " << asientos[k][i][j] << " ";
+        }
+        cout << "\n";
+      }
+      cout << "\n";
     }
-    cout << "\n";
-  }
 };
 
 // Escogemos un asiento de sala Grande
 string SalaGrande::escogerAsiento(int position)
 {
-  fflush(stdin);
   string buscado;
+
+  for (int k = position; k < position + 1; k++)
+  {
+    for (int i = 0; i < 10; i++)
+    {
+      for (int j = 0; j < 14; j++)
+      {
+        cout << " " << asientos[k][i][j] << " ";
+      }
+      cout << "\n";
+    }
+  }
+
   cout << "Escoge un asiento" << endl;
   fflush(stdin);
   cin >> buscado;
-  int flag = 0, row, col;
+  int flag = 0, row, col, block;
 
-  switch (position)
+  for (int k = position; k < position + 1; k++)
   {
-  case 0:
-    cout << "Asientos Pelicula 1" << endl;
     for (int i = 0; i < 10; i++)
     {
       for (int j = 0; j < 14; j++)
       {
-        if (asientos[i][j] == buscado)
+        if (asientos[k][i][j] == buscado)
         {
           flag = 1;
           row = i;
           col = j;
+          block = k;
         }
       }
     }
-    // Display position of the search Element
-    if (flag == 1)
-    {
-      cout << "Su asiento: " << buscado << " se encuenta en "
-           << "fila[" << row << "] columna[" << col << "]" << endl;
-      for (int i = row; i < 10; i++)
-      {
-        for (int j = col; j < 14; j++)
-        {
-          asientos[row][col] = asientos[row + 1][col + 1];
-          asientos[row][col] = "N.A";
-        }
-      }
+  }
 
+  // Display position of the search Element
+  if (flag == 1)
+  {
+    cout << "Su asiento: " << buscado << " se encuenta en "
+         << "bloque[" << block << "] "
+         << "fila[" << row << "] columna[" << col << "]" << endl;
+    for (int k = position; k < position + 1; k++)
+    {
       for (int i = 0; i < 10; i++)
       {
         for (int j = 0; j < 14; j++)
         {
-          cout << " " << asientos[i][j] << " ";
+          asientos[block][row][col] = asientos[block][row + 1][col + 1];
+          asientos[block][row][col] = "N.A";
         }
-        cout << "\n";
       }
     }
-    else
-    {
-      cout << "Asiento no valido" << endl;
-      return 0;
-    }
-    break;
 
-  case 1:
-    cout << "Asientos Pelicula 2" << endl;
-    for (int i = 0; i < 10; i++)
+    for (int k = position; k < position + 1; k++)
     {
-      for (int j = 0; j < 14; j++)
-      {
-        if (asientos[i][j] == buscado)
-        {
-          flag = 1;
-          row = i;
-          col = j;
-        }
-      }
-    }
-    // Display position of the search Element
-    if (flag == 1)
-    {
-      cout << "Su asiento: " << buscado << " se encuenta en "
-           << "fila[" << row << "] columna[" << col << "]" << endl;
-      for (int i = row; i < 10; i++)
-      {
-        for (int j = col; j < 14; j++)
-        {
-          asientos[row][col] = asientos[row + 1][col + 1];
-          asientos[row][col] = "N.A";
-        }
-      }
-
       for (int i = 0; i < 10; i++)
       {
         for (int j = 0; j < 14; j++)
         {
-          cout << " " << asientos[i][j] << " ";
+          cout << " " << asientos[k][i][j] << " ";
         }
         cout << "\n";
       }
+      cout << "\n";
     }
-    else
-    {
-      cout << "Asiento no valido" << endl;
-      return 0;
-    }
-    break;
-
-  case 3:
-    cout << "Asientos Pelicula 3" << endl;
-    for (int i = 0; i < 10; i++)
-    {
-      for (int j = 0; j < 14; j++)
-      {
-        if (asientos[i][j] == buscado)
-        {
-          flag = 1;
-          row = i;
-          col = j;
-        }
-      }
-    }
-    // Display position of the search Element
-    if (flag == 1)
-    {
-      cout << "Su asiento: " << buscado << " se encuenta en "
-           << "fila[" << row << "] columna[" << col << "]" << endl;
-      for (int i = row; i < 10; i++)
-      {
-        for (int j = col; j < 14; j++)
-        {
-          asientos[row][col] = asientos[row + 1][col + 1];
-          asientos[row][col] = "N.A";
-        }
-      }
-
-      for (int i = 0; i < 10; i++)
-      {
-        for (int j = 0; j < 14; j++)
-        {
-          cout << " " << asientos[i][j] << " ";
-        }
-        cout << "\n";
-      }
-    }
-    else
-    {
-      cout << "Asiento no valido" << endl;
-      return 0;
-    }
-    break;
-
-  case 4:
-    cout << "Asientos Pelicula 4" << endl;
-    for (int i = 0; i < 10; i++)
-    {
-      for (int j = 0; j < 14; j++)
-      {
-        if (asientos[i][j] == buscado)
-        {
-          flag = 1;
-          row = i;
-          col = j;
-        }
-      }
-    }
-    // Display position of the search Element
-    if (flag == 1)
-    {
-      cout << "Su asiento: " << buscado << " se encuenta en "
-           << "fila[" << row << "] columna[" << col << "]" << endl;
-      for (int i = row; i < 10; i++)
-      {
-        for (int j = col; j < 14; j++)
-        {
-          asientos[row][col] = asientos[row + 1][col + 1];
-          asientos[row][col] = "N.A";
-        }
-      }
-
-      for (int i = 0; i < 10; i++)
-      {
-        for (int j = 0; j < 14; j++)
-        {
-          cout << " " << asientos[i][j] << " ";
-        }
-        cout << "\n";
-      }
-    }
-    else
-    {
-      cout << "Asiento no valido" << endl;
-      return 0;
-    }
-    break;
-
-  default:
-    break;
+  }
+  else
+  {
+    cout << "Asiento No valido" << endl;
   }
 
   return buscado;
@@ -246,209 +133,93 @@ string SalaGrande::escogerAsiento(int position)
 // Escogemos un asiento de sala Mediana
 string SalaMediana::escogerAsiento(int position)
 {
-  fflush(stdin);
   string buscado;
+  for (int k = position; k < position + 1; k++)
+  {
+    for (int i = 0; i < 7; i++)
+    {
+      for (int j = 0; j < 8; j++)
+      {
+        cout << " " << asientos[k][i][j] << " ";
+      }
+      cout << "\n";
+    }
+  }
   cout << "Escoge un asiento" << endl;
   fflush(stdin);
   cin >> buscado;
-  int flag = 0, row, col;
+  int flag = 0, row, col, block;
 
-  switch (position)
+  for (int k = 0; k < 5; k++)
   {
-  case 0:
-    cout << "Asientos Pelicula 1" << endl;
     for (int i = 0; i < 7; i++)
     {
       for (int j = 0; j < 8; j++)
       {
-        if (asientos[i][j] == buscado)
+        if (asientos[k][i][j] == buscado)
         {
           flag = 1;
           row = i;
           col = j;
+          block = k;
         }
       }
     }
-    // Display position of the search Element
-    if (flag == 1)
-    {
-      cout << "Su asiento: " << buscado << " se encuenta en "
-           << "fila[" << row << "] columna[" << col << "]" << endl;
-      for (int i = row; i < 7; i++)
-      {
-        for (int j = col; j < 8; j++)
-        {
-          asientos[row][col] = asientos[row + 1][col + 1];
-          asientos[row][col] = "N.A";
-        }
-      }
+  }
 
+  // Display position of the search Element
+  if (flag == 1)
+  {
+    cout << "Su asiento: " << buscado << " se encuenta en "
+         << "bloque[" << block << "]"
+         << "fila[" << row << "] columna[" << col << "]" << endl;
+    for (int k = 0; k < position; k++)
+    {
       for (int i = 0; i < 7; i++)
       {
         for (int j = 0; j < 8; j++)
         {
-          cout << " " << asientos[i][j] << " ";
+          asientos[block][row][col] = asientos[block][row + 1][col + 1];
+          asientos[block][row][col] = "N.A";
         }
-        cout << "\n";
       }
     }
-    else
-    {
-      cout << "Asiento no valido" << endl;
-      return 0;
-    }
-    break;
 
-  case 1:
-    cout << "Asientos Pelicula 2" << endl;
-    for (int i = 0; i < 7; i++)
+    for (int k = 0; k < position; k++)
     {
-      for (int j = 0; j < 8; j++)
-      {
-        if (asientos[i][j] == buscado)
-        {
-          flag = 1;
-          row = i;
-          col = j;
-        }
-      }
-    }
-    // Display position of the search Element
-    if (flag == 1)
-    {
-      cout << "Su asiento: " << buscado << " se encuenta en "
-           << "fila[" << row << "] columna[" << col << "]" << endl;
-      for (int i = row; i < 7; i++)
-      {
-        for (int j = col; j < 8; j++)
-        {
-          asientos[row][col] = asientos[row + 1][col + 1];
-          asientos[row][col] = "N.A";
-        }
-      }
-
       for (int i = 0; i < 7; i++)
       {
         for (int j = 0; j < 8; j++)
         {
-          cout << " " << asientos[i][j] << " ";
+          cout << " " << asientos[k][i][j] << " ";
         }
         cout << "\n";
       }
+      cout << "\n";
     }
-    else
-    {
-      cout << "Asiento no valido" << endl;
-      return 0;
-    }
-    break;
-
-  case 3:
-    cout << "Asientos Pelicula 3" << endl;
-    for (int i = 0; i < 7; i++)
-    {
-      for (int j = 0; j < 8; j++)
-      {
-        if (asientos[i][j] == buscado)
-        {
-          flag = 1;
-          row = i;
-          col = j;
-        }
-      }
-    }
-    // Display position of the search Element
-    if (flag == 1)
-    {
-      cout << "Su asiento: " << buscado << " se encuenta en "
-           << "fila[" << row << "] columna[" << col << "]" << endl;
-      for (int i = row; i < 7; i++)
-      {
-        for (int j = col; j < 8; j++)
-        {
-          asientos[row][col] = asientos[row + 1][col + 1];
-          asientos[row][col] = "N.A";
-        }
-      }
-
-      for (int i = 0; i < 7; i++)
-      {
-        for (int j = 0; j < 8; j++)
-        {
-          cout << " " << asientos[i][j] << " ";
-        }
-        cout << "\n";
-      }
-    }
-    else
-    {
-      cout << "Asiento no valido" << endl;
-      return 0;
-    }
-    break;
-
-  case 4:
-    cout << "Asientos Pelicula 4" << endl;
-    for (int i = 0; i < 7; i++)
-    {
-      for (int j = 0; j < 8; j++)
-      {
-        if (asientos[i][j] == buscado)
-        {
-          flag = 1;
-          row = i;
-          col = j;
-        }
-      }
-    }
-    // Display position of the search Element
-    if (flag == 1)
-    {
-      cout << "Su asiento: " << buscado << " se encuenta en "
-           << "fila[" << row << "] columna[" << col << "]" << endl;
-      for (int i = row; i < 7; i++)
-      {
-        for (int j = col; j < 8; j++)
-        {
-          asientos[row][col] = asientos[row + 1][col + 1];
-          asientos[row][col] = "N.A";
-        }
-      }
-
-      for (int i = 0; i < 7; i++)
-      {
-        for (int j = 0; j < 8; j++)
-        {
-          cout << " " << asientos[i][j] << " ";
-        }
-        cout << "\n";
-      }
-    }
-    else
-    {
-      cout << "Asiento no valido" << endl;
-      return 0;
-    }
-    break;
-
-  default:
-    break;
+  }
+  else
+  {
+    cout << "Asiento No valido" << endl;
   }
 
   return buscado;
 }
 
-// Mostramos asientos sala Mediana
-void SalaMediana::mostrarAsientos()
-{
-  for (int i = 0; i < 7; i++)
-  {
-    for (int j = 0; j < 8; j++)
-    {
-      cout << " " << asientos[i][j] << " ";
-    }
 
-    cout << "\n";
+// Mostramos asientos sala Mediana
+void SalaMediana::mostrarAsientos(int position)
+{
+  for (int k = position; k < position + 1; k++)
+  {
+    for (int i = 0; i < 7; i++)
+    {
+      for (int j = 0; j < 8; j++)
+      {
+        cout << " " << asientos[k][i][j] << " ";
+      }
+      cout << "\n";
+    }
   }
 }
 

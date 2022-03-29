@@ -9,7 +9,7 @@ int main() {
     int opc;
     int sel;
     int ch;
-    int pos = 1;
+    int pos = 0;
     Cliente cliente;
     Cine cine;
     SalaGrande salaG1, salaG2;
@@ -103,8 +103,8 @@ do {
 
     case 5:
         cout << "Eliminar Pelicula de Sala" <<endl;
-        salaG1.mostrarAsientos();
-        salaG1.escogerAsiento(pos);
+        salaG1.escogerAsiento(1);
+        salaG1.mostrarAsientos(1);
         break;
 
     default:
