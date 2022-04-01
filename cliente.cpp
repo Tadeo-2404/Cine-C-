@@ -15,14 +15,33 @@ Cliente::Cliente(string nombre, int ID) {
 
 void Cliente::setNombre(string nombre)
 {
-    nombreCliente = nombre;
+    this->nombreCliente = nombre;
 };
 
 void Cliente::setID(int id)
 {
-    ID = id;
+    this->ID = id;
 };
 
+void Cliente::setSalaNumero(int salanumero)
+{
+    this->salaNumero = salanumero;
+};
+
+void Cliente::setPeliculaNombre(string peliculanombre)
+{
+    this->peliculaNombre = peliculanombre;
+};
+
+void Cliente::setHorario(string horario)
+{
+    this->horario = horario;
+};
+
+void Cliente::setAsiento(string asiento)
+{
+    this->asiento = asiento;
+};
 
 string Cliente::getNombre() {
     return nombreCliente;
@@ -32,33 +51,19 @@ int Cliente::getID() {
     return ID;
 }
 
-// void Cliente::crearTicket(string nombre, int id, int salaNumero, string peliculaNombre, string horario, string asiento)
-// {
-//     if(counterTicket < 2800)
-//     {
-//       ticketArray[counterTicket].nombre = nombre;
-//       ticketArray[counterTicket].ID = ID;
-//       ticketArray[counterTicket].pelicula = peliculaNombre;
-//       ticketArray[counterTicket].horario = horario;
-//       ticketArray[counterTicket].sala = salaNumero;
-//       ticketArray[counterTicket].asiento = asiento;
-//       counterTicket++;
-//     } else {
-//         cout << "Ya no se pueden crear mas tickets" <<endl;
-//     }
-// }
+int Cliente::getSalaNumero() {
+    return salaNumero;
+}
 
-// void Cliente::mostrarTicket() {
-//     for (size_t i = 0; i < counterTicket; i++)
-//     {
-//       cout << "------------TICKET-------------" <<endl;
-//       cout << "Nombre:" << ticketArray[i].nombre <<endl;
-//       cout << "ID:" << ticketArray[i].ID <<endl;
-//       cout << "Pelicula:" << ticketArray[i].pelicula <<endl;
-//       cout << "Horario:" << ticketArray[i].horario <<endl;
-//       cout << "Sala:" << ticketArray[i].sala <<endl;
-//       cout << "Asiento:" << ticketArray[i].asiento <<endl;
-//       cout << "----------------------------------" <<endl;
-//     }
-    
-// }
+string Cliente::getPeliculaNombre() {
+    return peliculaNombre;
+}
+
+string Cliente::getHorario() {
+    return horario;
+}
+
+string Cliente::getAsiento() {
+    return asiento;
+}
+

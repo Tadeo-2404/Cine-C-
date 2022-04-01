@@ -11,7 +11,7 @@ Sala::Sala()
 {
   counterPeliculasSala = 0;
   counterHorarioString = 0;
-};
+}
 
 string Sala::getTipoSala()
 {
@@ -31,6 +31,11 @@ SalaMediana::SalaMediana()
 SalaGrande::SalaGrande()
 {
   this->setTipoSala("SalaGrande");
+}
+
+int Sala::getCounterPeliculasSala() 
+{
+  return counterPeliculasSala;
 }
 
 // METODOS
@@ -104,7 +109,7 @@ string SalaGrande::escogerAsiento(int position)
         for (int j = 0; j < 14; j++)
         {
           asientos[block][row][col] = asientos[block][row + 1][col + 1];
-          asientos[block][row][col] = "N.A";
+          asientos[block][row][col] = "N.D";
         }
       }
     }
@@ -180,7 +185,7 @@ string SalaMediana::escogerAsiento(int position)
         for (int j = 0; j < 8; j++)
         {
           asientos[block][row][col] = asientos[block][row + 1][col + 1];
-          asientos[block][row][col] = "N.A";
+          asientos[block][row][col] = "N.D";
         }
       }
     }
@@ -239,6 +244,7 @@ void Sala::añadirPeliculas(Pelicula &pelicula)
       float horaInicio;
       float horafinal;
       cout << "A que hora empieza la pelicula?" << endl;
+      fflush(stdin);
       cin >> horaInicio;
 
       if (horaInicio < 9.00 || horaInicio + nuevaPelicula.getDuracion() > 22.00 || horaInicio > 22.0) // Si la hora de es menor o mayor a la apertura, retorna error
@@ -381,7 +387,6 @@ void Sala::mostrarPelicula()
   for (size_t i = 0; i < counterPeliculasSala; i++)
   {
     Pelicula &pelicula = arrayPeliculaSala[i];
-    cout << left;
     cout << i + 1 << setw(15) << pelicula.getNombre() << setw(15) << pelicula.getDirector() << setw(15) << pelicula.getDuracion() << setw(15) << pelicula.getHorario() << endl;
   }
 }

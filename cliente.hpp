@@ -7,27 +7,28 @@ using namespace std;
 class Cliente {
     string nombreCliente;
     int ID;
-
-    //   struct ticket
-    // {
-    //   string nombre;
-    //   int ID;
-    //   int sala;
-    //   string pelicula;
-    //   string horario;
-    //   string asiento;
-    // }ticketArray[2800];
-    //  size_t counterTicket = 0;
+    int salaNumero;
+    string peliculaNombre;
+    string horario;
+    string asiento;
 
 public:
     Cliente();
     Cliente(string, int);
-    //  void crearTicket(string nombre, int id, int salaNumero, string peliculaNombre, string horario, string asiento);
-    // void mostrarTicket();
+
     void setNombre(string);
     void setID(int);
+    void setSalaNumero(int);
+    void setPeliculaNombre(string);
+    void setHorario(string);
+    void setAsiento(string);
+
     string getNombre();
     int getID();
+    int getSalaNumero();
+    string getPeliculaNombre();
+    string getHorario();
+    string getAsiento();
 };
 
 #endif 

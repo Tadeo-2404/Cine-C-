@@ -18,6 +18,7 @@ public:
     void eliminarPeliculas(); //Elimina la pelicula de la sala
     void setTipoSala(string);
     string getTipoSala();
+    int getCounterPeliculasSala();
 };
 
 class SalaMediana : public Sala {

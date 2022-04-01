@@ -9,11 +9,16 @@ int main() {
     int opc;
     int sel;
     int ch;
-    int pos = 0;
+    int pos = 1;
     Cliente cliente;
     Cine cine;
-    SalaGrande salaG1, salaG2;
-    SalaMediana salaM1, salaM2, salaM3, salaM4, salaM5;
+    SalaGrande* salaG1 = new SalaGrande();
+    SalaGrande* salaG2 = new SalaGrande();
+    SalaMediana* salaM1 = new SalaMediana();
+    SalaMediana* salaM2 = new SalaMediana();
+    SalaMediana* salaM3 = new SalaMediana();
+    SalaMediana* salaM4 = new SalaMediana();
+    SalaMediana* salaM5 = new SalaMediana();
     string nombreClienteBuscado;
     cine.registrarSala(salaG1);
     cine.registrarSala(salaG2);
@@ -103,8 +108,6 @@ do {
 
     case 5:
         cout << "Eliminar Pelicula de Sala" <<endl;
-        salaG1.escogerAsiento(1);
-        salaG1.mostrarAsientos(1);
         break;
 
     default:
