@@ -108,6 +108,7 @@ do {
 
     case 5:
         cout << "Eliminar Pelicula de Sala" <<endl;
+        cine.eliminarPeliculaSala();
         break;
 
     default:

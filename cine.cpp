@@ -10,6 +10,7 @@ using namespace std;
 Cine::Cine()
 {
   counterClientes = 0;
+  counterClientesB = 0;
   counterPeliculasCine = 0;
   counterSala = 0;
 }
@@ -17,15 +18,17 @@ Cine::Cine()
 // MUESTRA TODAS LAS PELICULAS DISPONIBLES
 void Cine::mostrarCatalogo()
 {
-     for (int i = 0; i < counterSala; i++)
-     {
-       if(arregloSala[i]->getCounterPeliculasSala() == 0)
-       {
-         cout << "No hay funciones disponibles, intentalo de nuevo mas tarde" <<endl;
-         return;
-       }
-     }
-     
+  for (int i = 0; i < counterSala; i++)
+  {
+    if (arregloSala[0]->getCounterPeliculasSala() == 0 && arregloSala[1]->getCounterPeliculasSala() == 0 && arregloSala[2]->getCounterPeliculasSala() == 0
+    && arregloSala[3]->getCounterPeliculasSala() == 0 && arregloSala[4]->getCounterPeliculasSala() == 0 && arregloSala[5]->getCounterPeliculasSala() == 0
+    && arregloSala[6]->getCounterPeliculasSala() == 0)
+    {
+      cout << "No hay funciones disponibles, intentalo de nuevo mas tarde" << endl;
+      return;
+    }
+  }
+
     cout << "-----------------------------------" << endl;
     cout << "Cartelera" << endl;
     cout << "-----------------------------------" << endl;
@@ -109,7 +112,7 @@ void Cine::registrarPeliculaSala()
     fflush(stdin);
     cin >> getPeliID;
 
-    if (getPeliID > 35 || getPeliID == 0)
+    if (getPeliID > 7 || getPeliID == 0)
     {
       cout << "Pelicula no valida, intenta de nuevo" << endl;
       return;
@@ -145,6 +148,144 @@ void Cine::registrarPeliculaSala()
     return;
   }
 }
+
+//Elimina Peliculas de una sala
+void Cine::eliminarPeliculaSala()
+{
+  int getSalaID;
+  int getPeliculaID;
+  int confirmar;
+  cout << "-----------------------------------" << endl;
+  cout << "Cartelera" << endl;
+  cout << "-----------------------------------" << endl;
+  cout << "-Salas Disponibles" << endl;
+
+  for (int i = 0; i < counterSala; i++)
+    {
+      Sala *sala = arregloSala[i];
+      cout << "\nSala Numero.- " << i + 1 << endl;
+      sala->mostrarPelicula();
+    }
+  cout << "-----------------------------------" << endl;
+
+  cout << "Selecciona una sala" <<endl;
+  cin>>getSalaID;
+
+  if(getSalaID > counterSala || getSalaID == 0)
+  {
+    cout << "Error: Sala Invalida" <<endl;
+    return;
+  }
+
+  Sala *sala = arregloSala[getSalaID -1];
+  cout << "\nSala Numero.- " << getSalaID << endl;
+  sala->mostrarPelicula();
+  cout <<endl;
+
+  cout << "Selecciona la pelicula a eliminar" <<endl;
+  cin>>getPeliculaID;
+
+  if(getPeliculaID > arregloSala[getSalaID -1]->getCounterPeliculasSala() || getPeliculaID == 0)
+  {
+    cout << "Error: Pelicula Invalida" <<endl;
+    return;
+  }
+
+  Pelicula pelicula = sala->mostrarPeliEscogida(getPeliculaID - 1);
+  cout << "Seguro que quieres eliminar la pelicula N: " << getPeliculaID  << endl;
+  cout << "1) Si   2) No" << endl;
+  fflush(stdin);
+  cin >> confirmar;
+
+  if (confirmar == 1)
+  {
+    sala->eliminarPelicula(getPeliculaID-1);
+    for (int i = 0; i < counterClientes; i++)
+    {
+      if (clientesArray[i].getSalaNumero() != getSalaID || clientesArray[i].getPeliculaNombre() != pelicula.getNombre() || clientesArray[i].getHorario() != pelicula.getHorario())
+      {
+        clientesArrayCopia[counterClientesB] = clientesArray[i];
+        counterClientesB++;
+      } 
+    }
+
+    for (int k = 0; k < counterClientesB; k++)
+    {
+      clientesArray[k] = clientesArrayCopia[k];
+    }
+    
+    counterClientes = counterClientesB;
+    counterClientesB = 0;
+
+ switch (getSalaID - 1)
+      {
+      case 0:
+      {
+        SalaGrande *salaG1 = (SalaGrande *)arregloSala[0];
+        salaG1->reiniciarAsientos(getPeliculaID -1);
+        cout << "Asientos Sala 1: Actualizados!!" << endl;
+        break;
+      }
+      case 1:
+      {
+        SalaGrande *salaG2 = (SalaGrande *)arregloSala[1];
+        cout << "Asientos Sala 2: Actualizados!!" << endl;
+        salaG2->reiniciarAsientos(getPeliculaID - 1);
+
+        break;
+      }
+      case 2:
+      {
+        SalaMediana *salaM1 = (SalaMediana *)arregloSala[2];
+        cout << "Asientos Sala 3: Actualizados!!" << endl;
+        salaM1->reiniciarAsientos(getPeliculaID - 1);
+      
+        break;
+      }
+      case 3:
+      {
+        SalaMediana *salaM2 = (SalaMediana *)arregloSala[3];
+        cout << "Asientos Sala 4: Actualizados!!" << endl;
+        salaM2->reiniciarAsientos(getPeliculaID - 1);
+        
+        break;
+      }
+
+      case 4:
+      {
+        SalaMediana *salaM3 = (SalaMediana *)arregloSala[4];
+        cout << "Asientos Sala 5: Actualizados!!" << endl;
+        salaM3->reiniciarAsientos(getPeliculaID - 1);
+
+        break;
+      }
+      case 5:
+      {
+        SalaMediana *salaM4 = (SalaMediana *)arregloSala[5];
+        cout << "Asientos Sala 6: Actualizados!!" << endl;
+        salaM4->reiniciarAsientos(getPeliculaID - 1);
+     
+        break;
+      }
+      case 6:
+      {
+        SalaMediana *salaM5 = (SalaMediana *)arregloSala[6];
+        cout << "Asientos Sala 7: Actualizados!!" << endl;
+        salaM5->reiniciarAsientos(getPeliculaID - 1);
+
+        break;
+      }
+    }
+
+    cout<<endl;
+    cout << "Se borro el horario escogido \n y se eliminaron los clientes correctamente" <<endl;
+    cout<<endl;
+
+  } else {
+    cout << "Saliendo..." <<endl;
+    return;
+  }   
+} 
 
 // RECIBE LA INFORMACION DEL USUARIO Y CREA UN OBJETO DE TIPO CLIENTE
 void Cine::venderTicket()
@@ -186,13 +327,27 @@ void Cine::venderTicket()
       fflush(stdin);
       cin >> getSalaID;
 
+      if(getSalaID > 7) {
+         cout << "Error: Sala Invalida" <<endl;
+         return;
+      }
+
+      Sala *sala = arregloSala[getSalaID - 1];
+      cout <<endl;
+      sala->mostrarPelicula();
+      cout <<endl;
+
       cout << "Selecciona la Pelicula que quieres ver" << endl;
       cout << "N.- ";
       fflush(stdin);
       cin >> getPeliID;
 
-      Sala *sala = arregloSala[getSalaID - 1];
-
+      if(getPeliID > sala->getCounterPeliculasSala() || getPeliID == 0)
+      {
+        cout << "Error: Esa pelicula no se encuentra disponible en la sala" <<endl;
+        return;
+      }
+      
       switch (getSalaID - 1)
       {
       case 0:
@@ -342,7 +497,6 @@ void Cine::crearTicket(Cliente &cliente, int salaNumero, string peliculaNombre, 
 
 void Cine::mostrarTicket(Cliente &cliente)
 {
-
   cout << "------------TICKET-------------" << endl;
   cout << "Nombre: " << cliente.getNombre() << endl;
   cout << "ID: " << cliente.getID() << endl;
@@ -356,14 +510,21 @@ void Cine::mostrarTicket(Cliente &cliente)
 // MUESTRA T0DOS LOS CLIENTES EN EL ARREGLO
 void Cine::mostrarCliente()
 {
-  cout << "-----------------------------------" << endl;
-  cout << "Lista de Clientes" << endl;
-  for (int i = 0; i < counterClientes; i++)
+  if (counterClientes == 0)
   {
-    Cliente &cliente = clientesArray[i];
-    cout << "Nombre: " << cliente.getNombre() << endl;
-    cout << "ID: " << cliente.getID() << endl;
+    cout << "Que quieres que te muestre? No hay clientes!!" << endl;
+  }
+  else
+  {
     cout << "-----------------------------------" << endl;
+    cout << "Lista de Clientes" << endl;
+    for (int i = 0; i < counterClientes; i++)
+    {
+      Cliente &cliente = clientesArray[i];
+      cout << "Nombre: " << cliente.getNombre() << endl;
+      cout << "ID: " << cliente.getID() << endl;
+      cout << "-----------------------------------" << endl;
+    }
   }
 };
 
@@ -475,4 +636,16 @@ void Cine::mostrarSalas()
     cout << "Sala Numero.- " << i + 1 << endl;
   }
   cout << "-----------------------------------" << endl;
+}
+
+void Cine::eliminarCliente(int pos)
+{
+    if (pos < counterClientes)
+    {
+      for (int x = pos; x < counterClientes; x++)
+      {
+        clientesArray[x] = clientesArray[x + 1];
+      }
+      counterClientes--;
+    }
 }
