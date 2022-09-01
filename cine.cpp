@@ -182,7 +182,7 @@ void Cine::eliminarPeliculaSala()
   sala->mostrarPelicula();
   cout <<endl;
 
-  cout << "Selecciona la pelicula a eliminar" <<endl;
+  cout << "Selecciona el horario a eliminar" <<endl;
   cin>>getPeliculaID;
 
   if(getPeliculaID > arregloSala[getSalaID -1]->getCounterPeliculasSala() || getPeliculaID == 0)
@@ -191,7 +191,7 @@ void Cine::eliminarPeliculaSala()
     return;
   }
 
-  Pelicula pelicula = sala->mostrarPeliEscogida(getPeliculaID - 1);
+  Pelicula pelicula = sala->mostrarPeliEscogida(getPeliculaID - 1); //Mostramos la pelicula escogida
   cout << "Seguro que quieres eliminar la pelicula N: " << getPeliculaID  << endl;
   cout << "1) Si   2) No" << endl;
   fflush(stdin);
@@ -199,23 +199,23 @@ void Cine::eliminarPeliculaSala()
 
   if (confirmar == 1)
   {
-    sala->eliminarPelicula(getPeliculaID-1);
+    sala->eliminarPelicula(getPeliculaID-1); //Elinamos la sala
     for (int i = 0; i < counterClientes; i++)
     {
       if (clientesArray[i].getSalaNumero() != getSalaID || clientesArray[i].getPeliculaNombre() != pelicula.getNombre() || clientesArray[i].getHorario() != pelicula.getHorario())
       {
-        clientesArrayCopia[counterClientesB] = clientesArray[i];
-        counterClientesB++;
+        clientesArrayCopia[counterClientesB] = clientesArray[i]; //Iteramos sobre el arreglo y los que no coinciden los pasamos al nuevo arreglo
+        counterClientesB++; //Por cada cliente que no deba ser borrado el contador aumenta 1
       } 
     }
 
     for (int k = 0; k < counterClientesB; k++)
     {
-      clientesArray[k] = clientesArrayCopia[k];
+      clientesArray[k] = clientesArrayCopia[k]; //Asignamos al arreglo principal los elementos de la copia
     }
     
-    counterClientes = counterClientesB;
-    counterClientesB = 0;
+    counterClientes = counterClientesB; //Igualamos el counter de clientes al counter de la copia
+    counterClientesB = 0; //Igualamos el counter de la copia a 0
 
  switch (getSalaID - 1)
       {
@@ -480,6 +480,7 @@ void Cine::venderTicket()
   }
 };
 
+// CREAR UN TICKET
 void Cine::crearTicket(Cliente &cliente, int salaNumero, string peliculaNombre, string horario, string asiento)
 {
   if (counterClientes < 2800)
@@ -495,6 +496,7 @@ void Cine::crearTicket(Cliente &cliente, int salaNumero, string peliculaNombre, 
   }
 }
 
+// MUESTRA UN TICKET EN ESPECIFICO
 void Cine::mostrarTicket(Cliente &cliente)
 {
   cout << "------------TICKET-------------" << endl;
@@ -638,14 +640,3 @@ void Cine::mostrarSalas()
   cout << "-----------------------------------" << endl;
 }
 
-void Cine::eliminarCliente(int pos)
-{
-    if (pos < counterClientes)
-    {
-      for (int x = pos; x < counterClientes; x++)
-      {
-        clientesArray[x] = clientesArray[x + 1];
-      }
-      counterClientes--;
-    }
-}

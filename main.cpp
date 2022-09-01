@@ -1,8 +1,8 @@
 #include <iostream>
 using namespace std;
-#include "cliente.hpp"
-#include "cine.hpp"
-#include "sala.hpp"
+#include "cliente.cpp"
+#include "cine.cpp"
+#include "sala.cpp"
 
 
 int main() {

@@ -22,12 +22,11 @@ public:
     void buscarCliente(int, string);              // Busca un cliente por Nombre;
     void buscarClienteID();                       // Busca cliente por ID
     void mostrarCliente();                        // Muestra todos los clientes
-    void crearTicket(Cliente& cliente, int salaNumero, string peliculaNombre, string horario, string asiento);
-    void mostrarTicket(Cliente& cliente);
+    void crearTicket(Cliente& cliente, int salaNumero, string peliculaNombre, string horario, string asiento); // Crea un ticket
+    void mostrarTicket(Cliente& cliente);         // Muestra un ticket
     void registrarPelicula();                     // Registra una pelicula en el cine
     void registrarPeliculaSala();                 // Registra una pelicula a una Sala
     void eliminarPeliculaSala();                  // Elimina una pelicula de una sala
-    void eliminarCliente(int pos);
     void mostrarCatalogo();                       // Muestra el catalogo de peliculas
     void registrarSala(Sala* sala);               // Registra Sala Mediana al arreglo
     void mostrarSalas();                          // Muestra todas las salas
